@@ -140,3 +140,38 @@ export function getDiscordAuthConfig() {
     scopes: ["identify", "email"],
   };
 }
+
+// Keycloak SSO — primary auth provider for VISI Lab (sso.vaqueroisi.org)
+const keycloakDataSchema = z.object({
+  profile: z.object({
+    email: z.string().optional(),
+    email_verified: z.boolean().optional(),
+    preferred_username: z.string().optional(),
+    name: z.string().optional(),
+    sub: z.string(),
+  }),
+});
+
+export const getKeycloakUserFields = defineUserSignupFields({
+  email: (data) => {
+    const keycloakData = keycloakDataSchema.parse(data);
+    return keycloakData.profile.email || keycloakData.profile.preferred_username || keycloakData.profile.sub;
+  },
+  username: (data) => {
+    const keycloakData = keycloakDataSchema.parse(data);
+    return keycloakData.profile.preferred_username || keycloakData.profile.email || keycloakData.profile.sub;
+  },
+  isAdmin: (data) => {
+    const keycloakData = keycloakDataSchema.parse(data);
+    if (!keycloakData.profile.email || !keycloakData.profile.email_verified) {
+      return false;
+    }
+    return adminEmails.includes(keycloakData.profile.email);
+  },
+});
+
+export function getKeycloakAuthConfig() {
+  return {
+    scopes: ["openid", "profile", "email"],
+  };
+}

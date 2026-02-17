@@ -38,7 +38,7 @@ app OpenSaaS {
       //   (RequestPasswordReset(Route|Page), PasswordReset(Route|Page), EmailVerification(Route|Page))
       email: {
         fromField: {
-          name: "Open SaaS App",
+          name: "VISI Lab",
           email: "me@example.com"
         },
         emailVerification: {
@@ -50,6 +50,11 @@ app OpenSaaS {
           getEmailContentFn: import { getPasswordResetEmailContent } from "@src/auth/email-and-pass/emails",
         },
         userSignupFields: import { getEmailUserFields } from "@src/auth/userSignupFields",
+      },
+      // Keycloak SSO — primary authentication method for VISI Lab
+      keycloak: {
+        userSignupFields: import { getKeycloakUserFields } from "@src/auth/userSignupFields",
+        configFn: import { getKeycloakAuthConfig } from "@src/auth/userSignupFields",
       },
       // Uncomment to enable Google Auth (check https://wasp.sh/docs/auth/social-auth/google for setup instructions):
       // google: { // Guide for setting up Auth via Google
@@ -68,7 +73,7 @@ app OpenSaaS {
       // }
     },
     onAuthFailedRedirectTo: "/login",
-    onAuthSucceededRedirectTo: "/demo-app",
+    onAuthSucceededRedirectTo: "/lab",
   },
 
   db: {
@@ -100,6 +105,14 @@ route LandingPageRoute { path: "/", to: LandingPage }
 page LandingPage {
   component: import LandingPage from "@src/landing-page/LandingPage"
 }
+
+//#region Lab
+route LabRoute { path: "/lab", to: LabPage }
+page LabPage {
+  authRequired: true,
+  component: import LabPage from "@src/lab/LabPage"
+}
+//#endregion
 
 //#region Auth Pages
 route LoginRoute { path: "/login", to: LoginPage }

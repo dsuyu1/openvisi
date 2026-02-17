@@ -6,6 +6,7 @@ import "./Main.css";
 import NavBar from "./components/NavBar/NavBar";
 import {
   demoNavigationitems,
+  labNavigationItems,
   marketingNavigationItems,
 } from "./components/NavBar/constants";
 import CookieConsentBanner from "./components/cookie-consent/Banner";
@@ -22,9 +23,15 @@ export default function App() {
     );
   }, [location]);
 
+  const isLabPage = useMemo(() => {
+    return location.pathname.startsWith("/lab");
+  }, [location]);
+
   const navigationItems = isMarketingPage
     ? marketingNavigationItems
-    : demoNavigationitems;
+    : isLabPage
+      ? labNavigationItems
+      : demoNavigationitems;
 
   const shouldDisplayAppNavBar = useMemo(() => {
     return (
