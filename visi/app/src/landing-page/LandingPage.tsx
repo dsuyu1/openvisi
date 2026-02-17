@@ -4,6 +4,8 @@ import FeaturesGrid from "./components/FeaturesGrid";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Testimonials from "./components/Testimonials";
+import Mission from "./components/Mission";
+import Contact from "./components/Contact";
 import {
   examples,
   faqs,
@@ -18,11 +20,13 @@ export default function LandingPage() {
     <div className="bg-background text-foreground">
       <main className="isolate">
         <Hero />
+        <Mission />
         <ExamplesCarousel examples={examples} />
         <AIReady />
         <FeaturesGrid features={features} />
         <Testimonials testimonials={testimonials} />
         <FAQ faqs={faqs} />
+        <Contact />
       </main>
       <Footer footerNavigation={footerNavigation} />
     </div>
