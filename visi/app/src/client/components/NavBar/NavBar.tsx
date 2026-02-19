@@ -87,7 +87,7 @@ export default function NavBar({
                     },
                   )}
                 >
-                  Your SaaS
+                  VISI Lab
                 </span>
               </WaspRouterLink>
 
@@ -108,14 +108,18 @@ export default function NavBar({
 }
 
 function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
-  const { data: user, isLoading: isUserLoading } = useAuth();
+  const { data: user } = useAuth();
 
   return (
     <div className="hidden items-center justify-end gap-3 lg:flex lg:flex-1">
       <ul className="flex items-center justify-center gap-2 sm:gap-4">
         <DarkModeSwitcher />
       </ul>
-      {isUserLoading ? null : !user ? (
+      {user ? (
+        <div className="ml-3">
+          <UserDropdown user={user} />
+        </div>
+      ) : (
         <WaspRouterLink
           to={routes.LoginRoute.to}
           className={cn(
@@ -137,10 +141,6 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
             />
           </div>
         </WaspRouterLink>
-      ) : (
-        <div className="ml-3">
-          <UserDropdown user={user} />
-        </div>
       )}
     </div>
   );
@@ -153,7 +153,7 @@ function NavBarMobileMenu({
   isScrolled: boolean;
   navigationItems: NavigationItem[];
 }) {
-  const { data: user, isLoading: isUserLoading } = useAuth();
+  const { data: user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -180,7 +180,7 @@ function NavBarMobileMenu({
           <SheetHeader>
             <SheetTitle className="flex items-center">
               <WaspRouterLink to={routes.LandingPageRoute.to}>
-                <span className="sr-only">Your SaaS</span>
+                <span className="sr-only">VISI Lab</span>
                 <NavLogo isScrolled={false} />
               </WaspRouterLink>
             </SheetTitle>
@@ -191,19 +191,19 @@ function NavBarMobileMenu({
                 {renderNavigationItems(navigationItems, setMobileMenuOpen)}
               </ul>
               <div className="py-6">
-                {isUserLoading ? null : !user ? (
-                  <WaspRouterLink to={routes.LoginRoute.to}>
-                    <div className="text-foreground hover:text-primary flex items-center justify-end transition-colors duration-300 ease-in-out">
-                      Log in <LogIn size="1.1rem" className="ml-1" />
-                    </div>
-                  </WaspRouterLink>
-                ) : (
+                {user ? (
                   <ul className="space-y-2">
                     <UserMenuItems
                       user={user}
                       onItemClick={() => setMobileMenuOpen(false)}
                     />
                   </ul>
+                ) : (
+                  <WaspRouterLink to={routes.LoginRoute.to}>
+                    <div className="text-foreground hover:text-primary flex items-center justify-end transition-colors duration-300 ease-in-out">
+                      Log in <LogIn size="1.1rem" className="ml-1" />
+                    </div>
+                  </WaspRouterLink>
                 )}
               </div>
               <div className="py-6">
@@ -251,6 +251,6 @@ const NavLogo = ({ isScrolled }: { isScrolled: boolean }) => (
       "size-7": isScrolled,
     })}
     src={logo}
-    alt="Your SaaS App"
+    alt="VISI Lab"
   />
 );
