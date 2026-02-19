@@ -27,21 +27,6 @@ app OpenSaaS {
   auth: {
     userEntity: User,
     methods: {
-      email: {
-        fromField: {
-          name: "VISI Lab",
-          email: "noreply@vaqueroisi.org"
-        },
-        emailVerification: {
-          clientRoute: EmailVerificationRoute,
-          getEmailContentFn: import { getVerificationEmailContent } from "@src/auth/email-and-pass/emails",
-        },
-        passwordReset: {
-          clientRoute: PasswordResetRoute,
-          getEmailContentFn: import { getPasswordResetEmailContent } from "@src/auth/email-and-pass/emails",
-        },
-        userSignupFields: import { getEmailUserFields } from "@src/auth/userSignupFields",
-      },
       keycloak: {
         configFn: import { getKeycloakAuthConfig } from "@src/auth/keycloak",
         userSignupFields: import { getKeycloakUserFields } from "@src/auth/keycloak",
@@ -49,7 +34,6 @@ app OpenSaaS {
     },
     onAuthFailedRedirectTo: "/login",
     onAuthSucceededRedirectTo: "/lab",
-    onAfterSignup: import { onAfterSignup } from "@src/auth/hooks",
   },
 
   db: {
@@ -83,24 +67,14 @@ page LoginPage {
   component: import Login from "@src/auth/LoginPage"
 }
 
-route SignupRoute { path: "/signup", to: SignupPage }
-page SignupPage {
-  component: import { Signup } from "@src/auth/SignupPage"
+route RegisterRoute { path: "/register", to: RegisterPage }
+page RegisterPage {
+  component: import RegisterPage from "@src/auth/RegisterPage"
 }
 
-route RequestPasswordResetRoute { path: "/request-password-reset", to: RequestPasswordResetPage }
-page RequestPasswordResetPage {
-  component: import { RequestPasswordResetPage } from "@src/auth/email-and-pass/RequestPasswordResetPage",
-}
-
-route PasswordResetRoute { path: "/password-reset", to: PasswordResetPage }
-page PasswordResetPage {
-  component: import { PasswordResetPage } from "@src/auth/email-and-pass/PasswordResetPage",
-}
-
-route EmailVerificationRoute { path: "/email-verification", to: EmailVerificationPage }
-page EmailVerificationPage {
-  component: import { EmailVerificationPage } from "@src/auth/email-and-pass/EmailVerificationPage",
+action submitAccessRequest {
+  fn: import { submitAccessRequest } from "@src/auth/operations",
+  entities: [AccessRequest]
 }
 //#endregion
 

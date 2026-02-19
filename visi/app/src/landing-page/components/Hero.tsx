@@ -25,8 +25,8 @@ export default function Hero() {
                 </WaspRouterLink>
               </Button>
               <Button size="lg" variant="default" asChild>
-                <WaspRouterLink to={routes.SignupRoute.to}>
-                  Get Started <span aria-hidden="true">→</span>
+                <WaspRouterLink to={routes.RegisterRoute.to}>
+                  Request Access <span aria-hidden="true">→</span>
                 </WaspRouterLink>
               </Button>
             </div>

@@ -1,36 +1,29 @@
 import { LoginForm } from "wasp/client/auth";
 import { Link as WaspRouterLink, routes } from "wasp/client/router";
-import { AuthPageLayout } from "./AuthPageLayout";
 
 export default function Login() {
   return (
-    <AuthPageLayout>
-      <div className="mb-4 text-center">
-        <h2 className="text-xl font-bold text-gray-900">VISI Lab</h2>
-        <p className="mt-1 text-sm text-gray-600">
-          Sign in with your credentials or use SSO to access lab tools.
-        </p>
+    <div className="flex min-h-[60vh] items-center justify-center px-4">
+      <div className="w-full max-w-md rounded-lg border bg-white p-8 shadow-xl dark:bg-white">
+        <div className="mb-4 text-center">
+          <h2 className="text-xl font-bold text-gray-900">VISI Lab</h2>
+          <p className="mt-1 text-sm text-gray-600">
+            Sign in with your Keycloak credentials to access lab tools.
+          </p>
+        </div>
+        <LoginForm />
+        <div className="mt-6 text-center">
+          <span className="text-sm text-gray-600">
+            Don't have credentials yet?{" "}
+            <WaspRouterLink
+              to={routes.RegisterRoute.to}
+              className="font-medium text-gray-900 underline"
+            >
+              Request access
+            </WaspRouterLink>
+          </span>
+        </div>
       </div>
-      <LoginForm />
-      <br />
-      <span className="text-sm font-medium text-gray-900 dark:text-gray-900">
-        Don't have an account yet?{" "}
-        <WaspRouterLink to={routes.SignupRoute.to} className="underline">
-          register here
-        </WaspRouterLink>
-        .
-      </span>
-      <br />
-      <span className="text-sm font-medium text-gray-900">
-        Forgot your password?{" "}
-        <WaspRouterLink
-          to={routes.RequestPasswordResetRoute.to}
-          className="underline"
-        >
-          reset it
-        </WaspRouterLink>
-        .
-      </span>
-    </AuthPageLayout>
+    </div>
   );
 }

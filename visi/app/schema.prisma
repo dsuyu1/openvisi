@@ -102,6 +102,17 @@ model Logs {
   level                    String
 }
 
+model AccessRequest {
+  id                        String          @id @default(uuid())
+  createdAt                 DateTime        @default(now())
+
+  email                     String
+  fullName                  String
+  reason                    String?
+  isInstitutionalEmail      Boolean         @default(false)
+  status                    String          @default("pending") // 'pending', 'approved', 'rejected'
+}
+
 model ContactFormMessage {
   id                        String          @id @default(uuid())
   createdAt                 DateTime        @default(now())
