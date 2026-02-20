@@ -45,15 +45,6 @@ app OpenSaaS {
   client: {
     rootComponent: import App from "@src/client/App",
   },
-
-  emailSender: {
-    // Switch to SendGrid for production: https://docs.opensaas.sh/guides/email-sending/
-    provider: Dummy,
-    defaultFrom: {
-      name: "VISI Lab",
-      email: "noreply@vaqueroisi.org"
-    },
-  },
 }
 
 route LandingPageRoute { path: "/", to: LandingPage }
@@ -65,16 +56,6 @@ page LandingPage {
 route LoginRoute { path: "/login", to: LoginPage }
 page LoginPage {
   component: import Login from "@src/auth/LoginPage"
-}
-
-route RegisterRoute { path: "/register", to: RegisterPage }
-page RegisterPage {
-  component: import RegisterPage from "@src/auth/RegisterPage"
-}
-
-action submitAccessRequest {
-  fn: import { submitAccessRequest } from "@src/auth/operations",
-  entities: [AccessRequest]
 }
 //#endregion
 

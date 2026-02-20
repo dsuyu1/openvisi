@@ -1,5 +1,4 @@
 import { LoginForm } from "wasp/client/auth";
-import { Link as WaspRouterLink, routes } from "wasp/client/router";
 
 export default function Login() {
   return (
@@ -8,21 +7,14 @@ export default function Login() {
         <div className="mb-4 text-center">
           <h2 className="text-xl font-bold text-gray-900">VISI Lab</h2>
           <p className="mt-1 text-sm text-gray-600">
-            Sign in with your Keycloak credentials to access lab tools.
+            Sign in or register via SSO to access lab tools.
           </p>
         </div>
         <LoginForm />
-        <div className="mt-6 text-center">
-          <span className="text-sm text-gray-600">
-            Don't have credentials yet?{" "}
-            <WaspRouterLink
-              to={routes.RegisterRoute.to}
-              className="font-medium text-gray-900 underline"
-            >
-              Request access
-            </WaspRouterLink>
-          </span>
-        </div>
+        <p className="mt-4 text-center text-xs text-gray-500">
+          Clicking above will redirect you to our SSO portal where you can sign
+          in or create a new account.
+        </p>
       </div>
     </div>
   );
