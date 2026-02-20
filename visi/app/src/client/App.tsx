@@ -1,19 +1,14 @@
 import { useEffect, useMemo } from "react";
 import { Outlet, useLocation } from "react-router";
-import { routes } from "wasp/client/router";
 import { Toaster } from "../client/components/ui/toaster";
 import "./Main.css";
 import NavBar from "./components/NavBar/NavBar";
 import {
-  demoNavigationitems,
+  labNavigationItems,
   marketingNavigationItems,
 } from "./components/NavBar/constants";
 import CookieConsentBanner from "./components/cookie-consent/Banner";
 
-/**
- * use this component to wrap all child components
- * this is useful for templates, themes, and context
- */
 export default function App() {
   const location = useLocation();
   const isMarketingPage = useMemo(() => {
@@ -24,14 +19,7 @@ export default function App() {
 
   const navigationItems = isMarketingPage
     ? marketingNavigationItems
-    : demoNavigationitems;
-
-  const shouldDisplayAppNavBar = useMemo(() => {
-    return (
-      location.pathname !== routes.LoginRoute.build() &&
-      location.pathname !== routes.SignupRoute.build()
-    );
-  }, [location]);
+    : labNavigationItems;
 
   const isAdminDashboard = useMemo(() => {
     return location.pathname.startsWith("/admin");
@@ -54,9 +42,7 @@ export default function App() {
           <Outlet />
         ) : (
           <>
-            {shouldDisplayAppNavBar && (
-              <NavBar navigationItems={navigationItems} />
-            )}
+            <NavBar navigationItems={navigationItems} />
             <div className="mx-auto max-w-(--breakpoint-2xl)">
               <Outlet />
             </div>

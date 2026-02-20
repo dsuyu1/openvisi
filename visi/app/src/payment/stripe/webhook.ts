@@ -3,7 +3,6 @@ import express from "express";
 import type { Stripe } from "stripe";
 import { type MiddlewareConfigFn } from "wasp/server";
 import { type PaymentsWebhook } from "wasp/server/api";
-import { emailSender } from "wasp/server/email";
 import { requireNodeEnvVar } from "../../server/utils";
 import { assertUnreachable } from "../../shared/utils";
 import { UnhandledWebhookEventError } from "../errors";
@@ -174,12 +173,7 @@ async function handleCustomerSubscriptionUpdated(
   );
 
   if (subscription.cancel_at_period_end && user.email) {
-    await emailSender.send({
-      to: user.email,
-      subject: "We hate to see you go :(",
-      text: "We hate to see you go. Here is a sweet offer...",
-      html: "We hate to see you go. Here is a sweet offer...",
-    });
+    console.log(`Subscription cancellation pending for user: ${user.email}`);
   }
 }
 

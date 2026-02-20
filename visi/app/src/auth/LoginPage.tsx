@@ -1,30 +1,21 @@
 import { LoginForm } from "wasp/client/auth";
-import { Link as WaspRouterLink, routes } from "wasp/client/router";
-import { AuthPageLayout } from "./AuthPageLayout";
 
 export default function Login() {
   return (
-    <AuthPageLayout>
-      <LoginForm />
-      <br />
-      <span className="text-sm font-medium text-gray-900 dark:text-gray-900">
-        Don't have an account yet?{" "}
-        <WaspRouterLink to={routes.SignupRoute.to} className="underline">
-          go to signup
-        </WaspRouterLink>
-        .
-      </span>
-      <br />
-      <span className="text-sm font-medium text-gray-900">
-        Forgot your password?{" "}
-        <WaspRouterLink
-          to={routes.RequestPasswordResetRoute.to}
-          className="underline"
-        >
-          reset it
-        </WaspRouterLink>
-        .
-      </span>
-    </AuthPageLayout>
+    <div className="flex min-h-[60vh] items-center justify-center px-4">
+      <div className="w-full max-w-md rounded-lg border bg-white p-8 shadow-xl dark:bg-white">
+        <div className="mb-4 text-center">
+          <h2 className="text-xl font-bold text-gray-900">VISI Lab</h2>
+          <p className="mt-1 text-sm text-gray-600">
+            Sign in or register via SSO to access lab tools.
+          </p>
+        </div>
+        <LoginForm />
+        <p className="mt-4 text-center text-xs text-gray-500">
+          Clicking above will redirect you to our SSO portal where you can sign
+          in or create a new account.
+        </p>
+      </div>
+    </div>
   );
 }
