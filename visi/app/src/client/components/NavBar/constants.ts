@@ -4,11 +4,11 @@ import type { NavigationItem } from "./NavBar";
 
 const staticNavigationItems: NavigationItem[] = [
   { name: "Documentation", to: DocsUrl },
-  { name: "Blog", to: BlogUrl },
+  { name: "Security Blog", to: BlogUrl },
 ];
 
 export const marketingNavigationItems: NavigationItem[] = [
-  { name: "Features", to: "/#features" },
+  { name: "Our Work", to: "/#our-work" },
   ...staticNavigationItems,
 ] as const;
 

@@ -1,7 +1,5 @@
 import { Link as WaspRouterLink, routes } from "wasp/client/router";
 import { Button } from "../../client/components/ui/button";
-import openSaasBannerDark from "../../client/static/open-saas-banner-dark.svg";
-import openSaasBannerLight from "../../client/static/open-saas-banner-light.svg";
 
 export default function Hero() {
   return (
@@ -12,43 +10,25 @@ export default function Hero() {
         <div className="max-w-8xl mx-auto px-6 lg:px-8">
           <div className="lg:mb-18 mx-auto max-w-3xl text-center">
             <h1 className="text-foreground text-5xl font-bold sm:text-6xl">
-              Ready to get <span className="italic">hands on</span> with cybersecurity?{" "}
-              <span className="text-gradient-primary">your product</span>
+              Creating the Rio Grande Valley's{" "}
+              <span className="text-gradient-primary">
+                Cybersecurity Trailblazers
+              </span>
             </h1>
             <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg leading-8">
-              Join UTRGV's Vaquero Information Security Initiative!
+              VISI Lab equips UTRGV students with hands-on experience in
+              penetration testing, threat analysis, and security operations to
+              defend tomorrow's digital frontier.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Button size="lg" variant="outline" asChild>
-                <WaspRouterLink to={routes.PricingPageRoute.to}>
-                  Learn More
-                </WaspRouterLink>
+                <a href="/#our-work">Our Work</a>
               </Button>
               <Button size="lg" variant="default" asChild>
                 <WaspRouterLink to={routes.LoginRoute.to}>
-                  Get Started <span aria-hidden="true">→</span>
+                  Access the Lab <span aria-hidden="true">→</span>
                 </WaspRouterLink>
               </Button>
-            </div>
-          </div>
-          <div className="mt-14 flow-root sm:mt-14">
-            <div className="m-2 hidden justify-center rounded-xl md:flex lg:-m-4 lg:rounded-2xl lg:p-4">
-              <img
-                src={openSaasBannerLight}
-                alt="App screenshot"
-                width={1000}
-                height={530}
-                loading="lazy"
-                className="rounded-md shadow-2xl ring-1 ring-gray-900/10 dark:hidden"
-              />
-              <img
-                src={openSaasBannerDark}
-                alt="App screenshot"
-                width={1000}
-                height={530}
-                loading="lazy"
-                className="hidden rounded-md shadow-2xl ring-1 ring-gray-900/10 dark:block"
-              />
             </div>
           </div>
         </div>
@@ -64,7 +44,7 @@ function TopGradient() {
       aria-hidden="true"
     >
       <div
-        className="aspect-1020/880 w-280 flex-none bg-linear-to-tr from-amber-400 to-purple-300 opacity-10 sm:right-1/4 sm:translate-x-1/2 dark:hidden"
+        className="aspect-1020/880 w-280 flex-none bg-linear-to-tr from-blue-600 to-cyan-400 opacity-10 sm:right-1/4 sm:translate-x-1/2 dark:hidden"
         style={{
           clipPath:
             "polygon(80% 20%, 90% 55%, 50% 100%, 70% 30%, 20% 50%, 50% 0)",
@@ -81,7 +61,7 @@ function BottomGradient() {
       aria-hidden="true"
     >
       <div
-        className="relative aspect-1020/880 w-360 bg-linear-to-br from-amber-400 to-purple-300 opacity-10 sm:-left-3/4 sm:translate-x-1/4 dark:hidden"
+        className="relative aspect-1020/880 w-360 bg-linear-to-br from-blue-600 to-cyan-400 opacity-10 sm:-left-3/4 sm:translate-x-1/4 dark:hidden"
         style={{
           clipPath: "ellipse(80% 30% at 80% 50%)",
         }}

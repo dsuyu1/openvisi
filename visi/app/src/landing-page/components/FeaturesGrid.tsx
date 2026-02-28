@@ -27,11 +27,11 @@ const FeaturesGrid = ({ features, className = "" }: FeaturesGridProps) => {
   return (
     <div
       className="mx-auto my-16 flex max-w-7xl flex-col gap-4 md:my-24 lg:my-40"
-      id="features"
+      id="blog-posts"
     >
       <SectionTitle
-        title="Features"
-        description="These are some of the features of the product."
+        title="From the Security Blog"
+        description="Insights, write-ups, and research from VISI Lab members."
       />
       <div
         className={cn(

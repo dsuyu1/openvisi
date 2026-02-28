@@ -14,14 +14,14 @@ export default function Contact() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      description: "Get in touch with us via email",
+      description: "Reach out to learn more or get involved with VISI Lab",
       href: "mailto:damian.villarreal01@utrgv.edu",
       label: "Send an email",
     },
     {
       icon: <MessageSquare className="h-6 w-6" />,
       title: "Discord",
-      description: "Join our community on Discord",
+      description: "Join our community to connect with members and get updates",
       href: "https://discord.gg/YayXD8CRaP",
       label: "Join our Discord",
     },
@@ -32,10 +32,11 @@ export default function Contact() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-slate-50 dark:to-slate-950/50" />
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Get In Touch
+          Ready to Join?
         </h2>
         <p className="mt-4 text-lg leading-8 text-muted-foreground">
-          Have questions or want to join us? We'd love to hear from you!
+          Connect with VISI Lab and start your cybersecurity journey. All UTRGV
+          students are welcome.
         </p>
       </div>
 

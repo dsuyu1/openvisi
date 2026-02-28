@@ -1,166 +1,108 @@
-import daBoiAvatar from "../client/static/da-boi.webp";
 import kivo from "../client/static/examples/kivo.webp";
 import messync from "../client/static/examples/messync.webp";
 import microinfluencerClub from "../client/static/examples/microinfluencers.webp";
 import promptpanda from "../client/static/examples/promptpanda.webp";
 import reviewradar from "../client/static/examples/reviewradar.webp";
-import scribeist from "../client/static/examples/scribeist.webp";
-import searchcraft from "../client/static/examples/searchcraft.webp";
 import { BlogUrl, DocsUrl } from "../shared/common";
 import type { GridFeature } from "./components/FeaturesGrid";
 
 export const features: GridFeature[] = [
   {
-    name: "Cool Feature 1",
-    description: "Your feature",
-    emoji: "🤝",
-    href: DocsUrl,
-    size: "small",
-  },
-  {
-    name: "Cool Feature 2",
-    description: "Feature description",
-    emoji: "🔐",
-    href: DocsUrl,
-    size: "small",
-  },
-  {
-    name: "Cool Feature 3",
-    description: "Describe your cool feature here",
-    emoji: "🥞",
-    href: DocsUrl,
-    size: "medium",
-  },
-  {
-    name: "Cool Feature 4",
-    description: "Describe your cool feature here",
-    emoji: "💸",
-    href: DocsUrl,
+    name: "Getting Started with Wazuh",
+    description:
+      "A beginner's guide to deploying and configuring Wazuh for security monitoring.",
+    emoji: "🛡️",
+    href: BlogUrl,
     size: "large",
   },
   {
-    name: "Cool Feature 5",
-    description: "Describe your cool feature here",
-    emoji: "💼",
-    href: DocsUrl,
-    size: "large",
-  },
-  {
-    name: "Cool Feature 6",
-    description: "It is cool",
-    emoji: "📈",
-    href: DocsUrl,
-    size: "small",
-  },
-  {
-    name: "Cool Feature 7",
-    description: "Cool feature",
-    emoji: "📧",
-    href: DocsUrl,
-    size: "small",
-  },
-  {
-    name: "Cool Feature 8",
-    description: "Describe your cool feature here",
-    emoji: "🤖",
-    href: DocsUrl,
+    name: "CTF Write-up: Web Exploitation",
+    description:
+      "Step-by-step walkthrough of web exploitation challenges from our latest competition.",
+    emoji: "🏴",
+    href: BlogUrl,
     size: "medium",
   },
   {
-    name: "Cool Feature 9",
-    description: "Describe your cool feature here",
-    emoji: "🚀",
-    href: DocsUrl,
+    name: "Building a Home Lab",
+    description:
+      "How to set up a cybersecurity home lab for hands-on practice.",
+    emoji: "🔧",
+    href: BlogUrl,
     size: "medium",
   },
-];
-
-export const testimonials = [
   {
-    name: "Da Boi",
-    role: "Wasp Mascot",
-    avatarSrc: daBoiAvatar,
-    socialUrl: "https://twitter.com/wasplang",
-    quote: "I don't even know how to code. I'm just a plushie.",
+    name: "Network Traffic Analysis",
+    description:
+      "Techniques for analyzing network packets and identifying threats.",
+    emoji: "📡",
+    href: BlogUrl,
+    size: "small",
   },
   {
-    name: "Mr. Foobar",
-    role: "Founder @ Cool Startup",
-    avatarSrc: daBoiAvatar,
-    socialUrl: "",
-    quote: "This product makes me cooler than I already am.",
+    name: "Security Certifications Guide",
+    description:
+      "A roadmap for students pursuing cybersecurity certifications.",
+    emoji: "📜",
+    href: BlogUrl,
+    size: "small",
   },
   {
-    name: "Jamie",
-    role: "Happy Customer",
-    avatarSrc: daBoiAvatar,
-    socialUrl: "#",
-    quote: "My cats love it!",
-  },
-];
-
-export const faqs = [
-  {
-    id: 1,
-    question: "Whats the meaning of life?",
-    answer: "42.",
-    href: "https://en.wikipedia.org/wiki/42_(number)",
+    name: "Incident Response 101",
+    description:
+      "Essential procedures for handling security incidents in an enterprise environment.",
+    emoji: "🚨",
+    href: BlogUrl,
+    size: "medium",
   },
 ];
 
 export const footerNavigation = {
   app: [
     { name: "Documentation", href: DocsUrl },
-    { name: "Blog", href: BlogUrl },
+    { name: "Security Blog", href: BlogUrl },
   ],
   company: [
-    { name: "About", href: "https://wasp.sh" },
+    { name: "About VISI Lab", href: "https://vaqueroisi.org" },
+    { name: "UTRGV", href: "https://utrgv.edu" },
     { name: "Privacy", href: "#" },
-    { name: "Terms of Service", href: "#" },
   ],
 };
 
 export const examples = [
   {
-    name: "Example #1",
-    description: "Describe your example here.",
+    name: "Wazuh SIEM Lab",
+    description:
+      "Security Information and Event Management platform for real-time threat detection.",
     imageSrc: kivo,
     href: "#",
   },
   {
-    name: "Example #2",
-    description: "Describe your example here.",
+    name: "Penetration Testing Toolkit",
+    description:
+      "Custom tools and scripts developed for CTF competitions and security assessments.",
     imageSrc: messync,
     href: "#",
   },
   {
-    name: "Example #3",
-    description: "Describe your example here.",
+    name: "SOC Dashboard",
+    description:
+      "Security Operations Center monitoring dashboard for network traffic analysis.",
     imageSrc: microinfluencerClub,
     href: "#",
   },
   {
-    name: "Example #4",
-    description: "Describe your example here.",
+    name: "Vulnerability Scanner",
+    description:
+      "Automated vulnerability assessment tool for web application security testing.",
     imageSrc: promptpanda,
     href: "#",
   },
   {
-    name: "Example #5",
-    description: "Describe your example here.",
+    name: "Incident Response Playbook",
+    description:
+      "Documented procedures and automated workflows for security incident handling.",
     imageSrc: reviewradar,
-    href: "#",
-  },
-  {
-    name: "Example #6",
-    description: "Describe your example here.",
-    imageSrc: scribeist,
-    href: "#",
-  },
-  {
-    name: "Example #7",
-    description: "Describe your example here.",
-    imageSrc: searchcraft,
     href: "#",
   },
 ];
