@@ -15,14 +15,14 @@ export default function Contact() {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
       description: "Get in touch with us via email",
-      href: "mailto:contact@example.com",
+      href: "mailto:damian.villarreal01@utrgv.edu",
       label: "Send an email",
     },
     {
       icon: <MessageSquare className="h-6 w-6" />,
       title: "Discord",
       description: "Join our community on Discord",
-      href: "https://discord.gg/example",
+      href: "https://discord.gg/YayXD8CRaP",
       label: "Join our Discord",
     },
   ];
