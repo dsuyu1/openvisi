@@ -1,6 +1,6 @@
 import { LogIn, Menu } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Link as ReactRouterLink } from "react-router";
+import { Link as ReactRouterLink, useLocation } from "react-router";
 import { useAuth } from "wasp/client/auth";
 import { Link as WaspRouterLink, routes } from "wasp/client/router";
 import {
@@ -109,6 +109,8 @@ export default function NavBar({
 
 function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
   const { data: user } = useAuth();
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <div className="hidden items-center justify-end gap-3 lg:flex lg:flex-1">
@@ -119,7 +121,7 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
         <div className="ml-3">
           <UserDropdown user={user} />
         </div>
-      ) : (
+      ) : !isLoginPage ? (
         <WaspRouterLink
           to={routes.LoginRoute.to}
           className={cn(
@@ -141,7 +143,7 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
             />
           </div>
         </WaspRouterLink>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -155,6 +157,8 @@ function NavBarMobileMenu({
 }) {
   const { data: user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <div className="flex lg:hidden">
@@ -198,13 +202,13 @@ function NavBarMobileMenu({
                       onItemClick={() => setMobileMenuOpen(false)}
                     />
                   </ul>
-                ) : (
+                ) : !isLoginPage ? (
                   <WaspRouterLink to={routes.LoginRoute.to}>
                     <div className="text-foreground hover:text-primary flex items-center justify-end transition-colors duration-300 ease-in-out">
                       Log in <LogIn size="1.1rem" className="ml-1" />
                     </div>
                   </WaspRouterLink>
-                )}
+                ) : null}
               </div>
               <div className="py-6">
                 <DarkModeSwitcher />
