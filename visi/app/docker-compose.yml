@@ -1,6 +1,15 @@
+# =============================================================================
+# VISI Lab — Docker Compose (reference for fresh deployments)
+#
+# NOTE: If Keycloak + Postgres are already running (e.g. via separate compose
+# files), you do NOT need this file. It exists as a reference/quickstart for
+# new deployments.
+# =============================================================================
+
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgres:15
+    container_name: visi-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: visi
@@ -17,18 +26,18 @@ services:
       retries: 5
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.0
+    image: quay.io/keycloak/keycloak:latest
+    container_name: visi-keycloak
     restart: unless-stopped
     command: start-dev --import-realm
     environment:
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/visi_lab
+      KC_DB_URL: jdbc:postgresql://visi-postgres:5432/visi_lab
       KC_DB_USERNAME: visi
       KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:-admin}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
       KC_HOSTNAME: ${KEYCLOAK_HOSTNAME:-localhost}
-      KC_HOSTNAME_PORT: ${KEYCLOAK_PORT:-8443}
       KC_HTTP_PORT: 8080
       KC_PROXY_HEADERS: xforwarded
     volumes:
