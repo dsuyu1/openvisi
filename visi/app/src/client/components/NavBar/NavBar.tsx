@@ -15,7 +15,7 @@ import { UserDropdown } from "../../../user/UserDropdown";
 import { UserMenuItems } from "../../../user/UserMenuItems";
 import logo from "../../static/logo.webp";
 import { cn } from "../../utils";
-import DarkModeSwitcher from "../DarkModeSwitcher";
+
 
 export interface NavigationItem {
   name: string;
@@ -108,9 +108,6 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
 
   return (
     <div className="hidden items-center justify-end gap-3 lg:flex lg:flex-1">
-      <ul className="flex items-center justify-center gap-2 sm:gap-4">
-        <DarkModeSwitcher />
-      </ul>
       {user ? (
         <div className="ml-3">
           <UserDropdown user={user} />
@@ -201,9 +198,6 @@ function NavBarMobileMenu({
                     </div>
                   </WaspRouterLink>
                 )}
-              </div>
-              <div className="py-6">
-                <DarkModeSwitcher />
               </div>
             </div>
           </div>
