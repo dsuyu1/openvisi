@@ -3,23 +3,11 @@ import { Outlet, useLocation } from "react-router";
 import { Toaster } from "../client/components/ui/toaster";
 import "./Main.css";
 import NavBar from "./components/NavBar/NavBar";
-import {
-  labNavigationItems,
-  marketingNavigationItems,
-} from "./components/NavBar/constants";
+import { labNavigationItems } from "./components/NavBar/constants";
 import CookieConsentBanner from "./components/cookie-consent/Banner";
 
 export default function App() {
   const location = useLocation();
-  const isMarketingPage = useMemo(() => {
-    return (
-      location.pathname === "/" || location.pathname.startsWith("/pricing")
-    );
-  }, [location]);
-
-  const navigationItems = isMarketingPage
-    ? marketingNavigationItems
-    : labNavigationItems;
 
   const isAdminDashboard = useMemo(() => {
     return location.pathname.startsWith("/admin");
@@ -42,7 +30,7 @@ export default function App() {
           <Outlet />
         ) : (
           <>
-            <NavBar navigationItems={navigationItems} />
+            <NavBar navigationItems={labNavigationItems} />
             <div className="mx-auto max-w-(--breakpoint-2xl)">
               <Outlet />
             </div>
