@@ -1,0 +1,66 @@
+# VISI Lab - Docker Compose
+#
+# Prerequisites:
+#   1. Install Wasp CLI: https://wasp.sh/docs/quick-start
+#   2. Run: wasp build
+#   3. Copy your .env.server to .env (or set vars below)
+#   4. Run: docker compose up -d
+#
+# The Wasp build output in .wasp/build/ contains the generated Dockerfile.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: visi
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-visi_dev_password}
+      POSTGRES_DB: visi_lab
+    volumes:
+      - visi_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U visi -d visi_lab"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .wasp/build
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://visi:${POSTGRES_PASSWORD:-visi_dev_password}@db:5432/visi_lab
+      WASP_SERVER_URL: ${WASP_SERVER_URL:-http://localhost:3001}
+      WASP_WEB_CLIENT_URL: ${WASP_WEB_CLIENT_URL:-http://localhost:3001}
+
+      # Keycloak SSO
+      KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID:-visi-lab}
+      KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET}
+      KEYCLOAK_REALM_URL: ${KEYCLOAK_REALM_URL:-https://sso.vaqueroisi.org/realms/master}
+
+      # User management
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-damian.villarreal01@utrgv.edu}
+      INSTITUTIONAL_EMAIL_DOMAINS: ${INSTITUTIONAL_EMAIL_DOMAINS:-utrgv.edu,rsoc.utrgv.edu}
+      ADMIN_NOTIFICATION_EMAIL: ${ADMIN_NOTIFICATION_EMAIL:-damian.villarreal01@utrgv.edu}
+
+      # Optional integrations (uncomment as needed)
+      # SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+      # OPENAI_API_KEY: ${OPENAI_API_KEY}
+      # STRIPE_API_KEY: ${STRIPE_API_KEY}
+      # STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      # AWS_S3_IAM_ACCESS_KEY: ${AWS_S3_IAM_ACCESS_KEY}
+      # AWS_S3_IAM_SECRET_KEY: ${AWS_S3_IAM_SECRET_KEY}
+      # AWS_S3_FILES_BUCKET: ${AWS_S3_FILES_BUCKET}
+      # AWS_S3_REGION: ${AWS_S3_REGION}
+
+volumes:
+  visi_db_data:

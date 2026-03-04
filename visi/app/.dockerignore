@@ -1,0 +1,7 @@
+node_modules
+.wasp/out
+.wasp/packages
+*.log
+.env
+.env.*
+!.env.example
